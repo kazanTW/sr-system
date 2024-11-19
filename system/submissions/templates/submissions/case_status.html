@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <title>案件處理狀況</title>
+</head>
+<body>
+<h1>查看案件處理狀況</h1>
+<form method="GET">
+    <label for="student_id">請輸入學號查詢案件：</label>
+    <input type="text" id="student_id" name="student_id" required>
+    <button type="submit">查詢</button>
+</form>
+
+{% if submissions %}
+    <h2>案件列表</h2>
+    <ul>
+    {% for submission in submissions %}
+        <li>
+            <strong>案件類別：</strong> {{ submission.case_category }}<br>
+            <strong>案件描述：</strong> {{ submission.case_description }}<br>
+            <strong>當前狀態：</strong> {{ submission.get_status_display }}<br>
+            <strong>提交日期：</strong> {{ submission.submission_date }}<br>
+        </li>
+    {% endfor %}
+    </ul>
+{% elif student_id %}
+    <p>未找到與此學號相關的案件。</p>
+{% endif %}
+
+<a href="{% url 'submit_form' %}">返回提交頁面</a>
+</body>
+</html>

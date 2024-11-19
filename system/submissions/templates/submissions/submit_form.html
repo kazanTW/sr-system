@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案件提交表單</title>
+</head>
+<body>
+    <h1>提交案件表單</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="id_submitter_name">姓名：</label>
+            {{ form.submitter_name }}
+        </div>
+        <div>
+            <label for="id_submitter_department">學系：</label>
+            {{ form.submitter_department }}
+        </div>
+        <div>
+            <label for="id_student_id">學號：</label>
+            {{ form.student_id }}
+        </div>
+        <div>
+            <label for="id_phone_number">聯絡電話：</label>
+            {{ form.phone_number }}
+        </div>
+        <div>
+            <label for="id_email">Email：</label>
+            {{ form.email }}
+        </div>
+        <div>
+            <label for="id_incident_date">發生日期：</label>
+            {{ form.incident_date }}
+        </div>
+        <div>
+            <label for="id_case_category">案件類別：</label>
+            {{ form.case_category }}
+        </div>
+        <div>
+            <label for="id_case_description">案由說明：</label>
+            {{ form.case_description }}
+        </div>
+        <div>
+            <label for="id_relief_sought">建議或希望獲得之救濟：</label>
+            {{ form.relief_sought }}
+        </div>
+        <div>
+            <label for="id_evidence_file">佐證（上傳連結）：</label>
+            {{ form.evidence_file }}
+        </div>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>
