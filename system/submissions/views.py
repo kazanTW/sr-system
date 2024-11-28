@@ -28,9 +28,12 @@ def success(request):
 
 def case_status(request):
     student_id = request.GET.get('student_id')
+    submissions = []
     if student_id:
         submissions = Submission.objects.filter(student_id=student_id)
     else:
         submissions = None
-    return render(request,
-                  'submissions/case_status.html', {'submissions': submissions})
+    return render(request, 'submissions/case_status.html', {
+        'submissions': submissions,
+        'student_id': student_id,
+    })
