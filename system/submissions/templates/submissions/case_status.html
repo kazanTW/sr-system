@@ -2,33 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, inital-scale=1.0">
-    <title>案件處理狀況</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案件狀態查詢</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-<h1>查看案件處理狀況</h1>
-<form method="GET">
-    <label for="student_id">請輸入學號查詢案件：</label>
-    <input type="text" id="student_id" name="student_id" required>
-    <button type="submit">查詢</button>
-</form>
+    <div class="container">
+        <h1>查看案件處理狀況</h1>
+        <form method="GET">
+            <label for="student_id">請輸入學號查詢案件：</label>
+            <input type="text" id="student_id" name="student_id" placeholder="學號" required>
+            <button type="submit">查詢</button>
+        </form>
+        <br>
+        <h5>狀態說明：</h5>
+        <ul>
+            <li><b>待受理</b>：系統已經收到案件，但學權部尚未正式通知受理；請提案人注意近期信件。</li>
+            <li><b>已受理</b>：學權部已經受理案件，尚未開始聯繫有關單位。</li>
+            <li><b>處理中</b>：案件正在與有關單位聯繫接洽中。</li>
+            <li><b>進入結案程序</b>：有關單位與提案人已經接受處理結果，開始簽署結案文件。</li>
+            <li><b>已簽署結案</b>：雙方已經簽署結案文件，處理終結。</li>
+        </ul>
 
-{% if submissions %}
-    <h2>案件列表</h2>
-    <ul>
-    {% for submission in submissions %}
-        <li>
-            <strong>案件類別：</strong> {{ submission.case_category }}<br>
-            <strong>案件描述：</strong> {{ submission.case_description }}<br>
-            <strong>當前狀態：</strong> {{ submission.get_status_display }}<br>
-            <strong>提交日期：</strong> {{ submission.submission_date }}<br>
-        </li>
-    {% endfor %}
-    </ul>
-{% elif student_id %}
-    <p>未找到與此學號相關的案件。</p>
-{% endif %}
+        {% if student_id %}
+            <h2>{{ student_id }} 的案件列表</h2>
+        {% else %}
+            <h2>案件列表</h2>
+        {% endif %}
 
-<a href="{% url 'submit_form' %}">返回提交頁面</a>
+        {% if submissions %}
+            <ul class="submission-list">
+                {% for submission in submissions %}
+                    <li class="submission-item">
+                        <p><strong>案件類別：</strong>{{ submission.case_category }}</p>
+                        <p><strong>案件描述：</strong>{{ submission.case_description }}</p>
+                        <p><strong>當前狀態：</strong>{{ submission.get_status_display }}</p>
+                        <p><strong>提交日期：</strong>{{ submission.submission_date }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elif student_id %}
+            <p class="no-results">未找到與此學號相關的案件。</p>
+        {% endif %}
+        <div class="button-group">
+            <a href="{% url 'submit_form' %}" class="button">返回提交表單</a>
+            <a href="{% url 'case_status' %}" class="button">查詢案件狀態</a>
+        </div>
+    </div>
 </body>
 </html>
+
