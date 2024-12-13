@@ -1,0 +1,36 @@
+# Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Django
+db.sqlite3
+*.log
+*.pot
+*.pydevproject
+*.project
+
+# Environment and settings
+.env
+*.env
+
+# Static and media files
+staticfiles/
+media/
+
+# Virtual envs
+venv/
+env/
+
+# VSCode or other IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+*.swp
+*.swo
+
