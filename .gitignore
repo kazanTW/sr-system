@@ -34,3 +34,11 @@ Thumbs.db
 *.swp
 *.swo
 
+# PDM
+src/*.pyc
+src/*.pyo
+src/__pycache__/
+
+tests/*.pyc
+tests/*.pyo
+tests/__pycache__/

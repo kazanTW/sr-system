@@ -1,0 +1,28 @@
+[project]
+name = "sr-system"
+version = "0.1.0"
+description = "FCU Student's Right Case Tracking System"
+authors = [
+    {name = "Kazan", email = "andyswebking@gmail.com"},
+]
+dependencies = [
+    "django==5.1.2",
+    "gunicorn==20.1.0",
+    "mysqlclient==2.2.0",
+    "python-decouple==3.6",
+    "django-environ==0.9.0",
+    "celery==5.2.7",
+    "redis==4.3.4",
+    "psycopg2==2.9.5",
+    "django-crispy-forms==1.14.0",
+    "django-extensions==3.2.1",
+    "django-debug-toolbar==3.7.0",
+    "django-cors-headers==3.13.0",
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
